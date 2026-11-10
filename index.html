@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Story of Diwali — Deepavali, the Festival of Lights</title>
+<meta name="description" content="An interactive, cinematic journey through the story of Diwali: Rama's return to Ayodhya, the five days of the festival, and a place to light your own diya.">
+<meta name="theme-color" content="#070618">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23070618'/%3E%3Cpath d='M32 10c-6 8-4 14 0 20 4-6 6-12 0-20z' fill='%23ffb02e'/%3E%3Cpath d='M12 34c2 12 12 18 20 18s18-6 20-18c-10 4-30 4-40 0z' fill='%23e0792f'/%3E%3C/svg%3E">
+<script>document.documentElement.className+=" js"</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+<a class="skip" href="#story">Skip to the story</a>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" role="status" aria-live="polite">
+  <div class="ld-diya" data-art="loaderDiya"></div>
+  <p class="ld-title">Lighting the lamps</p>
+  <div class="ld-bar"><i id="ldBar"></i></div>
+</div>
+
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+<canvas id="fxGlobal" aria-hidden="true"></canvas>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="brand" href="#top" data-scroll="#top" aria-label="Deepavali — back to top">
+    <span class="brand-mark" data-art="loaderDiya"></span>
+    <span class="brand-text"><b>Deepavali</b><em lang="hi">दीपावली</em></span>
+  </a>
+  <nav class="nav-links" id="navLinks" aria-label="Primary">
+    <a href="#story" data-scroll="#story">The Story</a>
+    <a href="#days" data-scroll="#days">Five Days</a>
+    <a href="#experience" data-scroll="#experience">Light a Diya</a>
+    <a href="#gallery" data-scroll="#gallery">Gallery</a>
+    <a href="#finale" data-scroll="#finale">Celebrate</a>
+  </nav>
+  <div class="nav-tools">
+    <button class="music" id="musicBtn" type="button" aria-pressed="false" aria-label="Turn music on">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="mu-note" d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.6" fill="currentColor"/><circle cx="16.5" cy="16" r="2.6" fill="currentColor"/><path class="mu-off" d="M3 3l18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="music-label">Music</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<main>
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="top" data-bg="#070618" aria-label="Introduction">
+  <div class="hero-stage">
+    <div class="hl hl-sky"></div>
+    <div class="hl hl-stars" data-art="heroStars" data-depth="6"></div>
+    <div class="hl hl-moon" data-art="heroMoon" data-depth="14"></div>
+    <div class="hl hl-mandalaback" data-art="heroMandalaBack" data-depth="10"></div>
+    <div class="hl hl-far" data-art="heroFar" data-depth="22"></div>
+    <canvas class="hl hl-embers" id="fxHero" aria-hidden="true"></canvas>
+    <div class="hl hl-near" data-depth="40">
+      <div class="near-art" data-art="heroNear"></div>
+      <canvas class="near-lights" id="heroLights" aria-hidden="true"></canvas>
+    </div>
+    <div class="hl hl-floor" aria-hidden="true"><div class="floor-glow"></div><div class="floor-rangoli" data-art="heroRangoli"></div></div>
+    <div class="hl hl-diyas" data-art="heroDiyas" data-depth="64"></div>
+    <div class="hl hl-vignette"></div>
+  </div>
+
+  <div class="hero-copy">
+    <p class="hero-kicker reveal-line"><span>Deepavali · The Festival of Lights</span></p>
+    <h1 class="hero-title" aria-label="The Story of Diwali">
+      <span class="ht-small" data-split>THE STORY OF</span>
+      <span class="ht-big" data-rv>DIWALI</span>
+    </h1>
+    <div class="ornament" data-art="ornament"></div>
+    <p class="hero-sub">From the darkness of ignorance to the light of hope.</p>
+    <a class="btn btn-gold" href="#intro" data-scroll="#intro" id="exploreBtn"><span>Explore the Story</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><i></i></div>
+</section>
+
+<!-- ============ 2. STORY ============ -->
+<section class="intro" id="intro" data-bg="#0a0a22">
+  <div class="intro-inner">
+    <p class="eyebrow">An ancient story, retold in light</p>
+    <p class="statement" id="statement">Every year, on the darkest night of the season, millions of homes glow with small clay lamps. They remember a king who walked into exile, a battle of dharma against pride, and a city that waited fourteen years, then lit the way home.</p>
+    <div class="ornament" data-art="ornament"></div>
+  </div>
+</section>
+
+<section class="story" id="story" data-bg="#06071a" aria-label="The story of Diwali in six chapters">
+  <div class="film" id="film">
+    <div class="film-sticky">
+      <canvas class="film-fx" id="fxFilm" aria-hidden="true"></canvas>
+
+      <article class="chapter" data-ch="1">
+        <div class="scene" data-art="scene1" role="img" aria-label="Illustration: dawn over Ayodhya on the banks of the Sarayu, a lotus glowing in the foreground"></div>
+        <div class="chap-text">
+          <p class="chap-eyebrow"><b>Chapter I</b> · Ayodhya</p>
+          <h2 class="chap-title">The Birth of <em>Lord Rama</em></h2>
+          <p class="chap-p">In the great city of Ayodhya, capital of the Ikshvaku dynasty, King Dasharatha and Queen Kausalya welcomed a son on the ninth day of the bright half of Chaitra. Tradition honours him as Rama, the seventh avatar of Vishnu, born to uphold dharma.</p>
+          <p class="chap-p more">With his brothers Lakshmana, Bharata and Shatrughna he grew up under the guidance of sage Vasishtha. Calm, truthful and kind, he won the hearts of the people, and the heart of Sita of Mithila, whom he married.</p>
+          <p class="chap-pull">“A king is one who keeps his word.”</p>
+        </div>
+      </article>
+
+      <article class="chapter" data-ch="2">
+        <div class="scene" data-art="scene2" role="img" aria-label="Illustration: Rama, Sita and Lakshmana walking through a moonlit forest with fireflies"></div>
+        <div class="chap-text">
+          <p class="chap-eyebrow"><b>Chapter II</b> · The Forest</p>
+          <h2 class="chap-title">The Exile of <em>14 Years</em></h2>
+          <p class="chap-p">On the eve of Rama's coronation, a promise Dasharatha had once made to Queen Kaikeyi came due. Rama was to leave for the forest for fourteen years. He accepted without a word of anger, to keep his father's vow.</p>
+          <p class="chap-p more">Sita and Lakshmana would not let him go alone. The three walked out of Ayodhya into the Dandaka forest, leaving a city in tears, and a devoted Bharata who placed Rama's sandals upon the throne to rule in his name.</p>
+          <p class="chap-pull">“The forest is only dark to those who carry no light.”</p>
+        </div>
+      </article>
+
+      <article class="chapter" data-ch="3">
+        <div class="scene" data-art="scene3" role="img" aria-label="Illustration: the golden Pushpaka chariot carrying away Sita over the sea toward Lanka under a stormy sky"></div>
+        <div class="chap-text">
+          <p class="chap-eyebrow"><b>Chapter III</b> · Lanka</p>
+          <h2 class="chap-title">The Abduction of <em>Goddess Sita</em></h2>
+          <p class="chap-p">Ravana, the learned but arrogant king of Lanka, sent Maricha as a golden deer to lure Rama and Lakshmana away. Then, disguised as an ascetic, he came to Sita's hut and carried her off in his flying chariot, the Pushpaka Vimana.</p>
+          <p class="chap-p more">In Lanka she was kept in the Ashoka grove, and she never wavered. Rama, with Hanuman and Sugriva's vanara army beside him, set out to find her, crossing the sea by a bridge of stones.</p>
+          <p class="chap-pull">“Courage is a lamp that no storm can put out.”</p>
+        </div>
+      </article>
+
+      <article class="chapter" data-ch="4">
+        <div class="scene" data-art="scene4" role="img" aria-label="Illustration: Rama aims his arrow of light at ten-headed Ravana before burning Lanka"></div>
+        <div class="chap-text">
+          <p class="chap-eyebrow"><b>Chapter IV</b> · The War</p>
+          <h2 class="chap-title">The Battle Against <em>Ravana</em></h2>
+          <p class="chap-p">The war for Lanka was long and fierce. Kumbhakarna and Indrajit fell. At last Rama faced the ten-headed Ravana, whose power was great but whose pride had blinded him. Rama's arrow ended the war.</p>
+          <p class="chap-p more">That day is remembered as Vijayadashami, or Dussehra, the victory of dharma over adharma, of humility over ego. Rama then crowned the righteous Vibhishana king of Lanka.</p>
+          <p class="chap-pull">“Good wins, not by being louder, but by being true.”</p>
+        </div>
+      </article>
+
+      <article class="chapter" data-ch="5">
+        <div class="scene" data-art="scene5" role="img" aria-label="Illustration: Rama, Sita and Lakshmana flying in the Pushpaka Vimana toward Ayodhya at dusk"></div>
+        <div class="chap-text">
+          <p class="chap-eyebrow"><b>Chapter V</b> · The Journey Home</p>
+          <h2 class="chap-title">Return to <em>Ayodhya</em></h2>
+          <p class="chap-p">The fourteen years were complete. Rama, Sita and Lakshmana boarded the Pushpaka Vimana, now bright in the evening sky, and flew north over rivers and forests they had once crossed on foot.</p>
+          <p class="chap-p more">Far below, in Nandigram, Bharata had counted every day. Hanuman went ahead with the news: Rama is coming home.</p>
+          <p class="chap-pull">“After the longest night, the road home glows.”</p>
+        </div>
+      </article>
+
+      <article class="chapter" data-ch="6">
+        <div class="scene" data-art="scene6" role="img" aria-label="Illustration: Ayodhya glowing with thousands of diyas as Rama, Sita and Lakshmana are welcomed home under fireworks"></div>
+        <div class="dim" aria-hidden="true"></div>
+        <div class="chap-text">
+          <p class="chap-eyebrow"><b>Chapter VI</b> · Deepavali</p>
+          <h2 class="chap-title">The Celebration of <em>Diwali</em></h2>
+          <p class="chap-p">It was the new-moon night, the darkest of the month. The people of Ayodhya lined every street, rooftop and doorway with rows of clay lamps, deepa-avali, so that Rama, Sita and Lakshmana could find their way home.</p>
+          <p class="chap-p more">Rama was crowned, and his rule, Rama Rajya, became a symbol of justice and peace. Every Diwali we light those lamps again.</p>
+          <p class="chap-pull">“And so the city, and the world, learned to glow.”</p>
+        </div>
+      </article>
+
+      <div class="film-flare" aria-hidden="true"></div>
+      <div class="film-vignette" aria-hidden="true"></div>
+      <div class="film-numeral" id="filmNumeral" aria-hidden="true">I</div>
+      <ol class="film-rail" id="filmRail" aria-label="Chapters">
+        <li><button type="button" data-goto="1" aria-label="Chapter 1: The Birth of Lord Rama"><i></i><span>I</span></button></li>
+        <li><button type="button" data-goto="2" aria-label="Chapter 2: The Exile"><i></i><span>II</span></button></li>
+        <li><button type="button" data-goto="3" aria-label="Chapter 3: The Abduction"><i></i><span>III</span></button></li>
+        <li><button type="button" data-goto="4" aria-label="Chapter 4: The Battle"><i></i><span>IV</span></button></li>
+        <li><button type="button" data-goto="5" aria-label="Chapter 5: Return to Ayodhya"><i></i><span>V</span></button></li>
+        <li><button type="button" data-goto="6" aria-label="Chapter 6: The Celebration"><i></i><span>VI</span></button></li>
+      </ol>
+      <div class="film-hint" id="filmHint" aria-hidden="true"><span>Keep scrolling</span><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEANING ============ -->
+<section class="meaning" id="meaning" data-bg="#150a2e" aria-label="What Diwali means">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Why it still matters</p>
+      <h2 class="sec-title" data-rv>More than a story</h2>
+      <div class="ornament" data-art="ornament"></div>
+      <p class="sec-lead">“Deepavali” means a row of lamps. Its meaning has grown over thousands of years, and today the festival is honoured by Hindus, Jains, Sikhs and many Buddhists, each with their own beautiful reasons for lighting a lamp.</p>
+    </header>
+    <div class="m-grid">
+      <article class="m-card reveal"><span class="m-glyph" aria-hidden="true">☼</span><h3>Light over darkness</h3><p>The lamp is a symbol of the inner light: the awareness that remains when fear and doubt fall away.</p></article>
+      <article class="m-card reveal"><span class="m-glyph" aria-hidden="true">✦</span><h3>Good over evil</h3><p>Whether remembered through Rama's victory or Krishna's, the lesson is shared: pride and cruelty do not last.</p></article>
+      <article class="m-card reveal"><span class="m-glyph" aria-hidden="true">❂</span><h3>Knowledge over ignorance</h3><p>Homes are cleaned and opened. Old debts are settled. It is a night for wisdom, gratitude and fresh starts.</p></article>
+      <article class="m-card reveal"><span class="m-glyph" aria-hidden="true">❀</span><h3>Togetherness</h3><p>Families gather, sweets are shared, doors are left open. Diwali is a festival that belongs to everyone at the table.</p></article>
+    </div>
+    <p class="m-note reveal">In December 2025, UNESCO inscribed Deepavali on the Representative List of the Intangible Cultural Heritage of Humanity.</p>
+  </div>
+</section>
+
+<!-- ============ 5. FIVE DAYS ============ -->
+<section class="days" id="days" data-bg="#1a0b36" aria-label="The five days of Diwali">
+  <div class="days-pin">
+    <div class="days-track" id="daysTrack">
+      <div class="days-intro">
+        <p class="eyebrow">The festival calendar</p>
+        <h2 class="sec-title">The Five Days<br>of <em>Diwali</em></h2>
+        <div class="ornament ornament-left" data-art="ornament"></div>
+        <p class="sec-lead">Diwali is not one night but five, each with its own story, ritual and light. In 2026 the festival runs from 6 to 10 November.</p>
+        <p class="days-hint"><span>Scroll</span> <i></i></p>
+      </div>
+
+      <article class="day-card" tabindex="0">
+        <div class="day-glow"></div>
+        <div class="day-art" data-art="day1" role="img" aria-label="Illustration: a golden kalash overflowing with coins"></div>
+        <div class="day-body">
+          <p class="day-num">Day 1 · <time datetime="2026-11-06">6 Nov</time></p>
+          <h3>Dhanteras</h3>
+          <p class="day-tag">Worship of wealth and prosperity</p>
+          <p>Homes are cleaned and lit. People honour Lakshmi, Kubera and Dhanvantari, the divine physician, and buy something new, a coin or a utensil, as a sign of good fortune. At dusk a lamp is lit for Yama, the lord of death, for the family's safety.</p>
+        </div>
+      </article>
+
+      <article class="day-card" tabindex="0">
+        <div class="day-glow"></div>
+        <div class="day-art" data-art="day2" role="img" aria-label="Illustration: the sun rising behind a city with Krishna's chakra in the sky"></div>
+        <div class="day-body">
+          <p class="day-num">Day 2 · <time datetime="2026-11-07">7 Nov</time></p>
+          <h3>Naraka Chaturdashi</h3>
+          <p class="day-tag">Choti Diwali, victory over evil</p>
+          <p>Remembers Krishna's defeat of the tyrant Narakasura and the freeing of thousands he had imprisoned. Families wake before dawn for an oil bath, light lamps and draw the first rangoli patterns at the door.</p>
+        </div>
+      </article>
+
+      <article class="day-card day-card-main" tabindex="0">
+        <div class="day-glow"></div>
+        <div class="day-art" data-art="day3" role="img" aria-label="Illustration: Goddess Lakshmi seated on a lotus between two elephants, golden coins falling"></div>
+        <div class="day-body">
+          <p class="day-num">Day 3 · <time datetime="2026-11-08">8 Nov</time> · the main night</p>
+          <h3>Lakshmi Puja</h3>
+          <p class="day-tag">Worship of Goddess Lakshmi</p>
+          <p>On the new-moon night, Lakshmi and Ganesha are worshipped in every home. Rows of diyas are lit, windows and doors are left open, and it is said the goddess visits the houses that are clean, bright and filled with kindness.</p>
+        </div>
+      </article>
+
+      <article class="day-card" tabindex="0">
+        <div class="day-glow"></div>
+        <div class="day-art" data-art="day4" role="img" aria-label="Illustration: Krishna lifting Govardhan hill above cows and villagers in the rain"></div>
+        <div class="day-body">
+          <p class="day-num">Day 4 · <time datetime="2026-11-09">9 Nov</time></p>
+          <h3>Govardhan Puja</h3>
+          <p class="day-tag">Celebrating Lord Krishna</p>
+          <p>Krishna lifted Govardhan hill on his little finger to shelter the people of Vrindavan from Indra's storm. Devotees prepare Annakut, a mountain of food offered with gratitude to nature and to the earth that feeds us.</p>
+        </div>
+      </article>
+
+      <article class="day-card" tabindex="0">
+        <div class="day-glow"></div>
+        <div class="day-art" data-art="day5" role="img" aria-label="Illustration: a sister and brother with a thali holding a diya, marigolds and sweets"></div>
+        <div class="day-body">
+          <p class="day-num">Day 5 · <time datetime="2026-11-10">10 Nov</time></p>
+          <h3>Bhai Dooj</h3>
+          <p class="day-tag">The bond of brothers and sisters</p>
+          <p>Sisters apply a tilak to their brothers' foreheads and pray for their long life. Brothers return the love with gifts and a promise to protect. The festival closes in the warmest way: with family.</p>
+        </div>
+      </article>
+      <div class="days-end" aria-hidden="true"></div>
+    </div>
+    <div class="days-progress" aria-hidden="true"><i id="daysBar"></i></div>
+  </div>
+</section>
+
+<!-- ============ 6. EXPERIENCE ============ -->
+<section class="exp" id="experience" data-bg="#07061a" aria-label="Interactive Diwali experience">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Make it yours</p>
+      <h2 class="sec-title" data-rv>Light your own Diwali</h2>
+      <div class="ornament" data-art="ornament"></div>
+    </header>
+
+    <!-- Diya stage -->
+    <div class="stage" id="diyaStage" style="--lit:0">
+      <div class="stage-bg" aria-hidden="true"></div>
+      <h3 class="stage-quote" id="stageQuote">One Light Can Remove A Thousand Shadows.</h3>
+      <p class="stage-sub" id="lightMsg">Tap a diya to light it. Each flame lights the next.</p>
+      <div class="diya-grid" id="diyaGrid" role="group" aria-label="Diyas to light"></div>
+      <div class="stage-bar">
+        <span class="count" id="litCount" aria-live="polite">0 of 9 diyas lit</span>
+        <span class="stage-btns">
+          <button class="btn btn-ghost" id="lightAll" type="button">Light them all</button>
+          <button class="btn btn-ghost" id="blowOut" type="button">Start over</button>
+        </span>
+      </div>
+      <p class="stage-end" aria-hidden="true">The room is bright now. So is the world, one flame at a time.</p>
+    </div>
+
+    <!-- Rangoli -->
+    <div class="rangoli">
+      <div class="rg-copy">
+        <p class="eyebrow">Rangoli studio</p>
+        <h3 class="sub-title">Draw a rangoli</h3>
+        <p>Rangoli is drawn at the doorstep to welcome guests and the goddess. Touch the circle and pattern blooms in perfect symmetry around the centre.</p>
+
+        <div class="rg-ctl"><span class="rg-lab">Symmetry</span>
+          <div class="seg" role="group" aria-label="Symmetry">
+            <button type="button" data-sym="6" aria-pressed="false">6</button><button type="button" data-sym="8" class="on" aria-pressed="true">8</button><button type="button" data-sym="12" aria-pressed="false">12</button><button type="button" data-sym="16" aria-pressed="false">16</button>
+          </div>
+        </div>
+        <div class="rg-ctl"><span class="rg-lab">Motif</span>
+          <div class="seg" role="group" aria-label="Motif">
+            <button type="button" data-motif="petal" class="on" aria-pressed="true">Petal</button><button type="button" data-motif="lotus" aria-pressed="false">Lotus</button><button type="button" data-motif="leaf" aria-pressed="false">Leaf</button><button type="button" data-motif="diamond" aria-pressed="false">Diamond</button><button type="button" data-motif="dot" aria-pressed="false">Dot</button>
+          </div>
+        </div>
+        <div class="rg-ctl"><span class="rg-lab">Colour</span>
+          <div class="swatches" role="group" aria-label="Colour">
+            <button type="button" data-swatch="0" class="on" style="--c:#ffd36b" aria-label="Gold" aria-pressed="true"></button>
+            <button type="button" data-swatch="1" style="--c:#ff8a2a" aria-label="Orange" aria-pressed="false"></button>
+            <button type="button" data-swatch="2" style="--c:#e0457b" aria-label="Rose" aria-pressed="false"></button>
+            <button type="button" data-swatch="3" style="--c:#8a4fe0" aria-label="Violet" aria-pressed="false"></button>
+            <button type="button" data-swatch="4" style="--c:#2fc2b0" aria-label="Teal" aria-pressed="false"></button>
+            <button type="button" data-swatch="5" style="--c:#fff4e0" aria-label="Cream" aria-pressed="false"></button>
+            <button type="button" data-swatch="6" style="--c:#7ad0ff" aria-label="Sky" aria-pressed="false"></button>
+          </div>
+        </div>
+        <div class="rg-ctl"><span class="rg-lab"><label for="rgSize">Size</label></span><input id="rgSize" type="range" min="0.6" max="2.2" step="0.1" value="1"></div>
+        <div class="rg-actions">
+          <button class="btn btn-gold btn-sm" id="rgBloom" type="button">Surprise me</button>
+          <button class="btn btn-ghost" id="rgUndo" type="button">Undo</button>
+          <button class="btn btn-ghost" id="rgClear" type="button">Clear</button>
+          <button class="btn btn-ghost" id="rgSave" type="button">Save image</button>
+        </div>
+      </div>
+      <div class="rg-canvas-wrap">
+        <canvas id="rangoliCanvas" aria-label="Rangoli drawing area. Pointer drawing only; use the Surprise me button for a keyboard-friendly pattern."></canvas>
+        <p class="rg-hint" id="rangoliHint">Touch and drag</p>
+      </div>
+    </div>
+
+    <!-- Decor -->
+    <div class="decor-sec">
+      <header class="sec-head sec-head-sm">
+        <p class="eyebrow">Festival decorations</p>
+        <h3 class="sub-title">Tap to bring them to life</h3>
+      </header>
+      <div class="decor-grid" id="decorGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. GALLERY ============ -->
+<section class="gallery" id="gallery" data-bg="#0d0724" aria-label="Diwali gallery">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Original illustrations</p>
+      <h2 class="sec-title" data-rv>The Diwali gallery</h2>
+      <div class="ornament" data-art="ornament"></div>
+      <p class="sec-lead">Eight scenes of the festival. Tap any picture to view it large.</p>
+    </header>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<!-- ============ 8. FINALE ============ -->
+<section class="finale" id="finale" data-bg="#04030f" aria-label="The festival of lights">
+  <div class="finale-stage">
+    <div class="fin-sky"></div>
+    <canvas class="fin-fw" id="fxFinale" aria-hidden="true"></canvas>
+    <div class="fin-glow" id="finGlow" aria-hidden="true"></div>
+    <div class="fin-city" data-art="finaleCity"></div>
+    <canvas class="fin-lights" id="finLights" aria-hidden="true"></canvas>
+    <div class="fin-river" aria-hidden="true"></div>
+  </div>
+  <div class="finale-copy">
+    <p class="eyebrow">The festival of lights</p>
+    <h2 class="fin-title" id="finTitle"><span data-rv>LET LIGHT WIN</span><span data-rv>OVER DARKNESS</span></h2>
+    <p class="fin-msg">May this Diwali bring happiness, peace, prosperity, and new beginnings into your life.</p>
+    <p class="fin-happy"><span class="fh-text" data-split>HAPPY DIWALI</span><span class="fh-diya" data-art="loaderDiya" role="img" aria-label="diya"></span></p>
+    <button class="btn btn-gold btn-lg" id="celebrateBtn" type="button"><span>Celebrate the Light</span></button>
+    <p class="fin-wish" id="finWish" aria-live="polite"></p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-in">
+    <div>
+      <p class="foot-brand"><b>Deepavali</b> <em lang="hi">दीपावली</em></p>
+      <p class="foot-note">Diwali is celebrated in many beautiful ways across India and the world. This site follows the Ramayana tradition for the story, and the widely observed five-day calendar. All artwork is original and drawn in code.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#story" data-scroll="#story">The Story</a>
+      <a href="#days" data-scroll="#days">Five Days</a>
+      <a href="#experience" data-scroll="#experience">Light a Diya</a>
+      <a href="#gallery" data-scroll="#gallery">Gallery</a>
+      <a href="#top" data-scroll="#top">Back to top</a>
+    </nav>
+  </div>
+  <p class="foot-copy">शुभ दीपावली · Shubh Deepavali</p>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="Scroll to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+  <button class="lb-close" id="lbClose" type="button" aria-label="Close">×</button>
+  <button class="lb-nav lb-prev" id="lbPrev" type="button" aria-label="Previous image">‹</button>
+  <figure class="lb-fig"><div class="lb-art" id="lbArt"></div><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-nav lb-next" id="lbNext" type="button" aria-label="Next image">›</button>
+</div>
+
+<noscript><p style="position:fixed;inset:auto 0 0 0;background:#000;color:#fde7a8;padding:12px;text-align:center;z-index:9999">This story is told with animation and needs JavaScript. Please enable it to experience Diwali.</p></noscript>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="js/art-core.js"></script>
+<script src="js/art-story.js"></script>
+<script src="js/art-misc.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/interactive.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
